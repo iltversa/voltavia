@@ -1,6 +1,6 @@
-# Illicium Motors
+# Voltavia
 
-Marketing site for Illicium Motors electric scooters. Plain HTML, CSS and vanilla
+Marketing site for Voltavia electric scooters. Plain HTML, CSS and vanilla
 JavaScript. No framework, no build step, no dependencies.
 
 ## What is here
@@ -9,7 +9,7 @@ JavaScript. No framework, no build step, no dependencies.
 |---|---|
 | `index.html` | The site. Everything except the images. |
 | `assets/` | Product photography, WebP with alpha. |
-| `illicium-motors-standalone.html` | Generated single file with every image inlined as base64. For sending to people. |
+| `voltavia-standalone.html` | Generated single file with every image inlined as base64. For sending to people. |
 | `tools/build-standalone.py` | Regenerates the standalone file from `index.html` + `assets/`. |
 
 ## Running it locally

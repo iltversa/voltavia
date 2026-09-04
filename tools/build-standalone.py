@@ -2,7 +2,7 @@ import base64, os, re, sys
 
 root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 src = os.path.join(root, 'index.html')
-dst = sys.argv[1] if len(sys.argv) > 1 else os.path.join(root, 'illicium-motors-standalone.html')
+dst = sys.argv[1] if len(sys.argv) > 1 else os.path.join(root, 'voltavia-standalone.html')
 
 html = open(src, encoding='utf-8').read()
 
