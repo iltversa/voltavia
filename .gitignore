@@ -11,3 +11,7 @@ desktop.ini
 review/
 *.zip
 __pycache__/
+
+# raw generation footage stays out of the deploy folder
+review/
+*-raw.mp4

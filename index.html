@@ -219,6 +219,67 @@ section{padding:clamp(4.5rem,10vw,8rem) 0;position:relative}
   border:1px solid var(--line);border-radius:999px;padding:.26rem .6rem}
 .card .swatch{position:absolute;top:1.2rem;right:1.2rem;width:16px;height:16px;border-radius:50%;border:2px solid rgba(255,255,255,.22)}
 
+/* ---------- anatomy: the scroll-scrubbed build sequence ---------- */
+/* Deliberately NOT the hero's skeleton: the hero is full bleed with centred
+   bands, this is a split with a sticky caption column beside a framed panel. */
+.anatomy{position:relative;z-index:1;height:460vh;
+  background:linear-gradient(180deg,transparent,rgba(16,29,35,.8) 10%,rgba(16,29,35,.8) 90%,transparent)}
+.anatomy.static-mode{height:auto}
+.astage{position:sticky;top:0;height:100vh;display:grid;align-items:center;overflow:hidden}
+.anatomy.static-mode .astage{position:relative;height:auto;padding:clamp(4.5rem,10vw,8rem) 0}
+.asplit{display:grid;grid-template-columns:minmax(0,.86fr) minmax(0,1.14fr);gap:clamp(1.5rem,4vw,3.5rem);align-items:center}
+@media(max-width:980px){.asplit{grid-template-columns:1fr;gap:2rem}}
+
+/* the framed panel holding the footage */
+.apanel{position:relative;border-radius:18px;overflow:hidden;border:1px solid var(--line);
+  background:#070f13;aspect-ratio:16/9}
+.apanel video,.apanel .aposter{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.apanel video{opacity:0;transition:opacity .7s var(--e1);transform:translateZ(0);will-change:transform}
+.apanel.video-ready video{opacity:1}
+.apanel .aposter{background-size:cover;background-position:center;opacity:1;transition:opacity .7s var(--e1)}
+.apanel.video-ready .aposter{opacity:0}
+.apanel::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(ellipse 90% 80% at 50% 50%,rgba(6,12,15,0) 45%,rgba(6,12,15,.5) 100%)}
+
+/* loading ring, honest about the download */
+.aring{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:44px;height:44px;
+  color:var(--accent);z-index:4;transition:opacity .5s var(--e1)}
+.apanel.video-ready .aring,.apanel.video-failed .aring{opacity:0}
+.aring circle{transition:stroke-dashoffset .18s linear}
+
+/* the caption column */
+.acol{position:relative;min-height:clamp(300px,42vh,420px);display:grid;align-items:center}
+@media(max-width:980px){.acol{min-height:auto}}
+.abnd{grid-area:1/1;opacity:0;pointer-events:none}
+.abnd .btn{pointer-events:auto}
+.abnd h2{font-size:clamp(1.8rem,3.6vw,3rem);margin:.55rem 0 0}
+.abnd .lede{color:var(--text-secondary);margin-top:.9rem;max-width:40ch;font-size:clamp(.92rem,1.3vw,1.02rem)}
+.abnd .w{--kc:clamp(0,(var(--k,0) - var(--th,0))*3,1);opacity:var(--kc);
+  transform:translateY(calc((1 - var(--kc)) * 16px))}
+.abnd .lede{--ks:clamp(0,(var(--k,0) - .35)*3,1);opacity:var(--ks);
+  transform:translateY(calc((1 - var(--ks)) * 12px))}
+
+/* the step rail: which beat you are on */
+.arail{display:flex;gap:8px;margin-top:1.8rem}
+.arail i{width:34px;height:3px;border-radius:3px;background:var(--line-strong);position:relative;overflow:hidden}
+.arail i::after{content:"";position:absolute;inset:0;background:var(--accent);
+  transform:scaleX(var(--f,0));transform-origin:left}
+.areadout{font-family:var(--mono);font-size:.64rem;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--text-secondary);margin-top:1rem}
+.areadout b{color:var(--accent);font-weight:700}
+
+/* static version: the composed ending frame with the beats listed under it */
+.astatic{display:none}
+.anatomy.static-mode .astatic{display:block}
+.anatomy.static-mode .asplit{display:none}
+.astatic .shot{border-radius:18px;overflow:hidden;border:1px solid var(--line);margin-top:1.6rem}
+.astaticlist{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);
+  border-block:1px solid var(--line);margin-top:2rem}
+@media(max-width:600px){.astaticlist{grid-template-columns:1fr}}
+.astaticlist div{background:var(--canvas);padding:1.4rem 1.2rem}
+.astaticlist h3{font-size:1.1rem;margin:.5rem 0 .4rem}
+.astaticlist p{font-size:.86rem;color:var(--text-secondary)}
+
 /* battery */
 .batt{position:relative}
 .batt .top{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(2rem,5vw,4rem);align-items:center}
@@ -319,6 +380,8 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
   .band{opacity:1!important}
   .band .w,.band .c,.band .inner,.band .lede,.band .row{opacity:1!important;transform:none!important}
   .band{position:relative;left:auto;transform:none;width:auto}
+  .abnd{opacity:1!important}
+  .abnd .w,.abnd .lede{opacity:1!important;transform:none!important}
   .variant{opacity:1!important;transform:none!important}
   .rule path{stroke-dashoffset:0!important}
 }
@@ -337,6 +400,7 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
     <div class="navlinks">
       <a href="#flagship">Flagship</a>
       <a href="#models">Models</a>
+      <a href="#anatomy">Built</a>
       <a href="#battery">Batteries</a>
       <a href="#faq">FAQ</a>
     </div>
@@ -548,6 +612,61 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
           <h3>Magenta</h3>
           <ul><li>Twin light</li><li>Alloy wheels</li><li>Long seat</li></ul>
         </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="anatomy" id="anatomy">
+    <div class="astage">
+      <div class="wrap asplit">
+
+        <div class="acol">
+          <div class="abnd" data-a="0" data-b="0.25" data-ramp="0.05">
+            <p class="kicker">What it is made of</p>
+            <h2 data-asplit><span class="sr">Nothing hidden</span></h2>
+            <p class="lede">Every part that becomes a Voltavia, laid out before it becomes one.</p>
+          </div>
+          <div class="abnd" data-a="0.25" data-b="0.52">
+            <p class="kicker">The frame</p>
+            <h2 data-asplit><span class="sr">The frame carries it</span></h2>
+            <p class="lede">Rated to 150 kg of load. Everything else hangs off it, and every piece of it comes off again.</p>
+          </div>
+          <div class="abnd" data-a="0.52" data-b="0.78">
+            <p class="kicker">The drive</p>
+            <h2 data-asplit><span class="sr">Then the power goes in</span></h2>
+            <p class="lede">A 60V 32Ah lithium pack feeding a 1500W hub motor, and the wiring that ties the two together.</p>
+          </div>
+          <div class="abnd" data-a="0.78" data-b="1" data-ramp="0.05">
+            <p class="kicker">Assembled</p>
+            <h2 data-asplit><span class="sr">Parts you can name</span></h2>
+            <p class="lede">When something wears out it is a part your mechanic can order and fit, not a sealed box you replace whole.</p>
+            <div class="row" style="justify-content:flex-start"><a class="btn ghost" href="#battery">See the pack</a></div>
+          </div>
+
+          <div class="arail" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+          <p class="areadout" aria-hidden="true">Assembly <b><span id="apct">0</span>%</b></p>
+        </div>
+
+        <div class="apanel" id="apanel">
+          <div class="aposter" id="aposter" aria-hidden="true"></div>
+          <video id="anatomyVideo" preload="none" muted playsinline aria-hidden="true" tabindex="-1"></video>
+          <svg class="aring" viewBox="0 0 48 48" aria-hidden="true">
+            <circle cx="24" cy="24" r="20" fill="none" stroke="currentColor" stroke-width="3"
+                    stroke-dasharray="126" style="stroke-dashoffset:var(--ld,126)"/>
+          </svg>
+        </div>
+
+      </div>
+
+      <div class="wrap astatic">
+        <p class="kicker">What it is made of</p>
+        <h2 style="font-size:clamp(2rem,5.2vw,3.6rem);margin:.6rem 0 0">Nothing hidden</h2>
+        <p style="color:var(--text-secondary);margin-top:1rem;max-width:52ch">Every part that becomes a Voltavia, laid out before it becomes one, and bolted together into a machine you can service.</p>
+        <div class="shot"><img src="assets/anatomy-ending.webp" alt="A fully assembled Voltavia electric scooter in indigo, headlight lit" width="1280" height="720" loading="lazy"></div>
+        <div class="astaticlist">
+          <div><p class="kicker">The frame</p><h3>The frame carries it</h3><p>Rated to 150 kg of load. Everything else hangs off it, and every piece of it comes off again.</p></div>
+          <div><p class="kicker">The drive</p><h3>Then the power goes in</h3><p>A 60V 32Ah lithium pack feeding a 1500W hub motor, and the wiring that ties the two together.</p></div>
+        </div>
       </div>
     </div>
   </section>
@@ -813,8 +932,14 @@ function disableScrub(){
   if(rafId!==null){ cancelAnimationFrame(rafId); rafId=null; }
   hero.classList.add('static-mode');
 }
+/* aEnable/aDisable are function declarations, so they are hoisted, but the
+   anatomy variables they touch are assigned further down. armAnatomy stays
+   false until that setup has run, and applyHeroMode is first called there. */
+var anatomyArmed=false;
 function applyHeroMode(){
-  if(MQLS.some(function(m){return m.matches})) disableScrub(); else enableScrub();
+  var gated=MQLS.some(function(m){return m.matches});
+  if(gated){ disableScrub(); if(anatomyArmed) aDisable(); }
+  else { enableScrub(); if(anatomyArmed) aEnable(); }
 }
 MQLS.forEach(function(m){ m.addEventListener('change',applyHeroMode) });
 applyHeroMode();
@@ -853,6 +978,174 @@ function drawRules(){
   });
 }
 window.addEventListener('scroll',drawRules,{passive:true}); drawRules();
+
+/* ---------- anatomy: the scroll-scrubbed build sequence ---------- */
+/* The inliner rewrites ANATOMY_URL to a data: URI in the standalone build. */
+var ANATOMY_URL='assets/anatomy-scrub.mp4';
+var ANATOMY_POSTER='assets/anatomy-poster.webp';
+var ANATOMY_BYTES=3647181;
+
+var aSec=$('#anatomy'), aPanel=$('#apanel'), aVideo=$('#anatomyVideo'),
+    aPosterEl=$('#aposter'), aRing=$('.aring'), aPctEl=$('#apct'),
+    aRailBars=$$('.arail i');
+
+var aBands=$$('.abnd').map(function(el){
+  return {el:el,a:parseFloat(el.getAttribute('data-a')),b:parseFloat(el.getAttribute('data-b')),
+          ramp:parseFloat(el.getAttribute('data-ramp'))||0,op:-1,k:-1};
+});
+
+/* split the anatomy headlines into word spans, same seeded generator */
+var arand=rng(20260904);
+$$('[data-asplit]').forEach(function(el){
+  var sr=el.querySelector('.sr'); if(!sr) return;
+  var words=sr.textContent.split(' ');
+  var vis=document.createElement('span'); vis.setAttribute('aria-hidden','true');
+  words.forEach(function(w,wi){
+    var ws=document.createElement('span'); ws.className='w';
+    ws.style.setProperty('--th',(wi/Math.max(1,words.length)*0.45).toFixed(3));
+    ws.textContent=w; vis.appendChild(ws);
+    if(wi<words.length-1) vis.appendChild(document.createTextNode(' '));
+  });
+  el.appendChild(vis);
+});
+
+var aTarget=0,aShown=0,aRaf=null,aLastTick=0,aOnScreen=false,aScrubOn=false;
+var aStarted=false,aSeekBusy=false,aPendingTime=null,aLastPct=-1,aLastPctAt=0;
+
+function aProgress(){
+  var r=aSec.getBoundingClientRect(), span=aSec.offsetHeight-window.innerHeight;
+  if(span<=0) return 0;
+  return clamp(-r.top/span,0,1);
+}
+function aRequestSeek(t){
+  if(!aVideo.duration || !isFinite(t)) return;
+  if(aSeekBusy){ aPendingTime=t; return; }
+  aSeekBusy=true;
+  try{ aVideo.currentTime=t; }catch(e){ aSeekBusy=false; }
+}
+aVideo.addEventListener('seeked',function(){
+  aSeekBusy=false;
+  if(aPendingTime!==null){ var t=aPendingTime; aPendingTime=null; aRequestSeek(t); }
+});
+aVideo.addEventListener('error',function(){       /* the deadlock escape */
+  aSeekBusy=false; aPendingTime=null; aFailVideo();
+});
+
+function aPaint(p,now){
+  if(aVideo.duration) aRequestSeek(p*aVideo.duration);
+  for(var i=0;i<aBands.length;i++){
+    var B=aBands[i], a=B.a, b=B.b;
+    var f=Math.min(0.02,(b-a)/3);
+    /* fade in over [a-f, a] so this beat rises while the previous one falls,
+       which keeps the caption column from ever going blank at a handover */
+    var o=(i===0?1:smoothstep(p,a-f,a))*(i===aBands.length-1?1:(1-smoothstep(p,b-f,b)));
+    var ramp=B.ramp||Math.min(0.03,(b-a)*0.35);
+    var k=clamp((p-a)/ramp,0,1);
+    if(Math.abs(o-B.op)>0.004){ B.el.style.opacity=o.toFixed(3); B.op=o; }
+    if(Math.abs(k-B.k)>0.008){ B.el.style.setProperty('--k',k.toFixed(3)); B.k=k; }
+    if(aRailBars[i]){
+      var fill=clamp((p-a)/((b-a)||1),0,1);
+      if(Math.abs(fill-(B.rf||0))>0.01){ aRailBars[i].style.setProperty('--f',fill.toFixed(3)); B.rf=fill; }
+    }
+  }
+  /* throttled to ~10Hz AND only written when the string actually changes */
+  var t=now||performance.now();
+  if(t-aLastPctAt>100){
+    aLastPctAt=t;
+    var pct=Math.round(p*100);
+    if(pct!==aLastPct){ aLastPct=pct; aPctEl.textContent=pct; }
+  }
+}
+function aTick(now){
+  var dt=Math.min(100,now-(aLastTick||now)); aLastTick=now;
+  var k=0.16;
+  aShown+=(aTarget-aShown)*(1-Math.pow(1-k,dt/16.667));
+  if(Math.abs(aTarget-aShown)<0.0005){
+    aShown=aTarget; aRaf=null; aLastTick=0; aPaint(aShown,now); return;
+  }
+  aRaf=requestAnimationFrame(aTick);
+  aPaint(aShown,now);
+}
+function aKick(){ if(aRaf===null && aOnScreen && aScrubOn){ aLastTick=0; aRaf=requestAnimationFrame(aTick); } }
+function aOnScroll(){ aTarget=aProgress(); aKick(); }
+
+function aFailVideo(){
+  aPanel.classList.add('video-failed');   /* poster carries the section */
+}
+function aStartLoad(){
+  if(aStarted) return; aStarted=true;
+  aPosterEl.style.backgroundImage="url('"+ANATOMY_POSTER+"')";
+  if(ANATOMY_URL.indexOf('data:')===0){        /* standalone build: already inline */
+    aVideo.src=ANATOMY_URL; aVideo.load(); aWireReady(); return;
+  }
+  var img=new Image();
+  img.onload=img.onerror=function(){ aLoadBlob().catch(aFailVideo); };
+  img.src=ANATOMY_POSTER;
+  setTimeout(function(){ aLoadBlob().catch(aFailVideo); },4000);
+}
+function aWireReady(){
+  aVideo.addEventListener('canplay',function(){
+    aRequestSeek(aProgress()*aVideo.duration);
+    aPanel.classList.add('video-ready');
+    aOnScroll();
+  },{once:true});
+}
+var aBlobStarted=false;
+function aLoadBlob(){
+  if(aBlobStarted) return Promise.resolve();
+  aBlobStarted=true;
+  var ctrl=new AbortController();
+  var watchdog=setTimeout(function(){ctrl.abort()},20000);
+  return fetch(ANATOMY_URL,{signal:ctrl.signal}).then(function(res){
+    var total=Number(res.headers.get('Content-Length'))||ANATOMY_BYTES;
+    if(!res.body||!res.body.getReader){       /* no streams: fall back to a plain blob */
+      clearTimeout(watchdog);
+      return res.blob().then(function(b){ aRing.style.setProperty('--ld',0); return b; });
+    }
+    var reader=res.body.getReader(), chunks=[], got=0, lastRing=0;
+    return (function pump(){
+      return reader.read().then(function(r){
+        if(r.done){ clearTimeout(watchdog); aRing.style.setProperty('--ld',0); return new Blob(chunks); }
+        clearTimeout(watchdog);
+        watchdog=setTimeout(function(){ctrl.abort()},20000);
+        chunks.push(r.value); got+=r.value.length;
+        var frac=Math.min(1,got/total), n=performance.now();
+        if(n-lastRing>100||frac===1){ lastRing=n; aRing.style.setProperty('--ld',Math.round(126*(1-frac))); }
+        return pump();
+      });
+    })();
+  }).then(function(blob){
+    aVideo.src=URL.createObjectURL(blob); aVideo.load(); aWireReady();
+  });
+}
+
+if('IntersectionObserver' in window){
+  new IntersectionObserver(function(es){
+    aOnScreen=es[0].isIntersecting;
+    if(aOnScreen){ if(aScrubOn) aStartLoad(); aKick(); }
+    else if(aRaf!==null){ cancelAnimationFrame(aRaf); aRaf=null; }
+  },{rootMargin:'300px'}).observe(aSec);
+}
+
+function aEnable(){
+  if(aScrubOn) return; aScrubOn=true;
+  aSec.classList.remove('static-mode');
+  aBands.forEach(function(B){B.op=-1;B.k=-1;B.rf=-1});
+  window.addEventListener('scroll',aOnScroll,{passive:true});
+  if(aOnScreen) aStartLoad();
+  aTarget=aProgress(); aShown=aTarget; aPaint(aShown); aKick();
+}
+function aDisable(){
+  if(!aScrubOn){ aSec.classList.add('static-mode'); return; }
+  aScrubOn=false;
+  window.removeEventListener('scroll',aOnScroll);
+  if(aRaf!==null){ cancelAnimationFrame(aRaf); aRaf=null; }
+  aSec.classList.add('static-mode');
+}
+
+/* anatomy setup is complete: arm it and let the gates decide its mode */
+anatomyArmed=true;
+applyHeroMode();
 
 /* ---------- the interactive moment: hold to charge ---------- */
 var CELLS=14, cellrow=$('#cellrow'), cells=[];
@@ -894,6 +1187,7 @@ function pinToFinalStates(){
   revealed.forEach(function(el){ el.classList.add('in','done') });
   rules.forEach(function(p){ p.style.setProperty('--d',1) });
   completeCharge();
+  aRailBars.forEach(function(b){ b.style.setProperty('--f',1) });
   window.removeEventListener('scroll',drawRules);
   if(rafId!==null){ cancelAnimationFrame(rafId); rafId=null; }
 }
