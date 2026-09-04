@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Illicium Motors | Electric Scooters Built to Lead</title>
+<meta name="description" content="Illicium Motors builds electric scooters with real range, real load capacity and lithium packs by LithiumPills. Explore the flagship and the full model line.">
+<meta name="theme-color" content="#0b1418">
+<!-- DEPLOY STEP: patch og:url and og:image with the live absolute URL -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Illicium Motors | Electric Scooters Built to Lead">
+<meta property="og:description" content="Electric scooters with real range, real load capacity and lithium packs by LithiumPills.">
+<meta property="og:url" content="https://example.com/">
+<meta property="og:image" content="https://example.com/assets/hero-tranz.webp">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230b1418'/%3E%3Cpath d='M16 25V15M16 15l-5-4-1-5M16 15l5-4 1-5M11 11l-4 1M21 11l4 1' stroke='%23b6e043' stroke-width='2' stroke-linecap='round' fill='none'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@600;700;800&family=Manrope:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --canvas:#0b1418;
+  --canvas-2:#101d23;
+  --panel:#14242c;
+  --panel-2:#1a2f38;
+  --accent:#b6e043;
+  --accent-hover:#c8ee5f;
+  --accent-muted:rgba(182,224,67,.18);
+  --cyan:#7ad3e8;
+  --cyan-muted:rgba(122,211,232,.16);
+  --text-primary:#f2f6f4;
+  --text-secondary:#9fb3ba;
+  --line:rgba(159,179,186,.16);
+  --line-strong:rgba(159,179,186,.34);
+  --tshadow:0 1px 2px rgba(4,10,12,.95),0 3px 12px rgba(4,10,12,.78),0 10px 44px rgba(4,10,12,.8);
+  --e1:cubic-bezier(.22,.61,.36,1);
+  --e2:cubic-bezier(.65,0,.35,1);
+  --display:'Saira Condensed', 'Arial Narrow', sans-serif;
+  --body:'Manrope', system-ui, sans-serif;
+  --mono:'Space Mono', ui-monospace, monospace;
+}
+*{box-sizing:border-box}
+html,body{overflow-x:hidden;overflow-x:clip}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--canvas);color:var(--text-primary);
+  font-family:var(--body);font-size:16px;line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;display:block}
+a{color:inherit}
+h1,h2,h3,h4{font-family:var(--display);font-weight:800;line-height:.98;letter-spacing:-.01em;margin:0;text-transform:uppercase}
+p{margin:0}
+.wrap{width:min(1180px,92vw);margin-inline:auto}
+.kicker{font-family:var(--mono);font-size:.7rem;letter-spacing:.24em;text-transform:uppercase;color:var(--accent)}
+.skip{position:absolute;left:-999px;top:0;z-index:200;background:var(--accent);color:#0b1418;padding:.7rem 1.1rem;font-weight:700;border-radius:0 0 8px 0}
+.skip:focus{left:0}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+
+/* fixed environment layer: one place, not stacked sections */
+.env{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.env::before{
+  content:"";position:absolute;inset:-20%;
+  background:
+    radial-gradient(50% 40% at 18% 12%, rgba(122,211,232,.13), transparent 70%),
+    radial-gradient(45% 40% at 84% 78%, rgba(182,224,67,.10), transparent 70%);
+  animation:drift 78s var(--e2) infinite alternate;animation-delay:-24s;
+}
+.env::after{
+  content:"";position:absolute;inset:0;opacity:.05;
+  background-image:radial-gradient(rgba(255,255,255,.6) .5px, transparent .5px);
+  background-size:3px 3px;
+}
+@keyframes drift{from{transform:translate3d(-2%,-1%,0) scale(1)}to{transform:translate3d(3%,2%,0) scale(1.08)}}
+
+/* ---------- nav ---------- */
+.nav{position:fixed;top:0;left:0;right:0;z-index:90;transition:background .5s var(--e1),border-color .5s var(--e1),backdrop-filter .5s var(--e1);border-bottom:1px solid transparent}
+.nav.solid{background:rgba(11,20,24,.82);backdrop-filter:blur(14px);border-bottom-color:var(--line)}
+.nav .bar{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.85rem 0}
+.brand{display:flex;align-items:center;gap:.6rem;text-decoration:none}
+.brand svg{width:30px;height:30px;flex:none}
+.brand b{font-family:var(--display);font-size:1.1rem;letter-spacing:.13em;font-weight:800}
+.brand span{display:block;font-family:var(--mono);font-size:.52rem;letter-spacing:.42em;color:var(--text-secondary);margin-top:-2px}
+.navlinks{display:flex;gap:1.6rem;align-items:center}
+.navlinks a{font-size:.82rem;text-decoration:none;color:var(--text-secondary);transition:color .3s var(--e1)}
+.navlinks a:hover{color:var(--text-primary)}
+@media(max-width:860px){.navlinks{display:none}}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:.5rem;
+  font-family:var(--display);font-weight:700;font-size:.95rem;letter-spacing:.06em;text-transform:uppercase;
+  padding:.72rem 1.35rem;border-radius:999px;text-decoration:none;border:1px solid transparent;cursor:pointer;
+  background:var(--accent);color:#0b1418;transition:background .3s var(--e1),transform .3s var(--e1),box-shadow .3s var(--e1);
+  text-shadow:none;
+}
+.btn:hover{background:var(--accent-hover);transform:translateY(-2px);box-shadow:0 10px 30px rgba(182,224,67,.24)}
+.btn.ghost{background:transparent;color:var(--text-primary);border-color:var(--line-strong)}
+.btn.ghost:hover{border-color:var(--accent);color:var(--accent);box-shadow:none}
+@media(pointer:coarse){.btn{min-height:44px;display:inline-flex;align-items:center;justify-content:center}}
+
+/* ---------- hero ---------- */
+.hero{position:relative;z-index:1;height:530vh}
+.hero.static-mode{height:auto}
+.stage{position:sticky;top:0;height:100vh;overflow:hidden;display:grid;place-items:center}
+.hero.static-mode .stage{position:relative;height:auto;min-height:100svh;padding:7rem 0 4rem;display:block}
+.scrimbase{position:absolute;inset:0;pointer-events:none;z-index:3;
+  background:radial-gradient(ellipse 120% 90% at 50% 45%, rgba(6,12,15,0) 34%, rgba(6,12,15,.66) 100%)}
+.glowfloor{position:absolute;left:50%;top:62%;width:min(1100px,96vw);height:340px;transform:translate(-50%,-50%);
+  background:radial-gradient(ellipse 50% 50% at 50% 50%, rgba(122,211,232,.22), transparent 70%);filter:blur(10px);z-index:1;pointer-events:none}
+
+.rig{position:absolute;inset:0;z-index:2;display:grid;place-items:center;will-change:transform}
+.rig img{width:min(880px,66vw);filter:drop-shadow(0 40px 70px rgba(0,0,0,.62))}
+@media(max-width:1100px){.rig img{width:min(760px,78vw)}}
+
+/* caption bands live in the negative space above and below the machine */
+.band{position:absolute;left:50%;transform:translateX(-50%);width:min(1080px,92vw);z-index:5;
+  text-align:center;text-shadow:var(--tshadow);pointer-events:none;opacity:0}
+.band.top{top:9vh}
+.band.bottom{bottom:9vh}
+.band::before{
+  content:"";position:absolute;inset:-40% -12%;pointer-events:none;z-index:-1;
+  opacity:calc(.25 + .75*var(--k,1));
+  background:radial-gradient(ellipse 74% 62% at 50% 50%, rgba(4,9,12,.7) 0%, rgba(4,9,12,.46) 46%, rgba(4,9,12,0) 76%);
+}
+.band .btn{text-shadow:none;pointer-events:auto}
+.band h1{font-size:clamp(2.6rem,8.4vw,7rem)}
+.band h2{font-size:clamp(1.7rem,4.6vw,3.5rem)}
+.band .lede{color:var(--text-secondary);max-width:56ch;margin:.9rem auto 0;font-size:clamp(.95rem,1.5vw,1.08rem)}
+.band .kicker{margin-bottom:.7rem}
+.w{display:inline-block;white-space:pre}
+.c{display:inline-block}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* entrance (a): drift-down words */
+.b-drift .w{--kc:clamp(0,(var(--k,0) - var(--th,0))*2.8,1);opacity:var(--kc);
+  transform:translateY(calc((1 - var(--kc)) * -26px))}
+/* entrance (b): scatter characters */
+.b-scatter .c{--kc:clamp(0,(var(--k,0) - var(--th,0))*2.6,1);opacity:var(--kc);
+  transform:translate(calc((1 - var(--kc))*var(--jx,0px)),calc((1 - var(--kc))*var(--jy,0px))) rotate(calc((1 - var(--kc))*var(--jr,0deg)))}
+/* entrance (c): approach from depth */
+.b-depth .inner{--kc:clamp(0,var(--k,0)*1.4,1);opacity:var(--kc);transform:scale(calc(.84 + .16*var(--kc)))}
+/* entrance (d): staged settle */
+.b-settle .w{--kc:clamp(0,(var(--k,0) - var(--th,0))*3,1);opacity:var(--kc);transform:translateY(calc((1 - var(--kc))*18px))}
+.b-settle .lede{--ks:clamp(0,(var(--k,0) - .58)*3.6,1);opacity:var(--ks);transform:translateY(calc((1 - var(--ks))*14px))}
+.b-settle .row{--kb:clamp(0,(var(--k,0) - .74)*4.4,1);opacity:var(--kb);transform:translateY(calc((1 - var(--kb))*14px))}
+
+.row{display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap;margin-top:1.4rem}
+
+/* hero HUD */
+.hud{position:absolute;left:50%;transform:translateX(-50%);bottom:3.2vh;z-index:6;display:flex;gap:.5rem;flex-wrap:wrap;justify-content:center}
+.chip{font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;
+  background:rgba(6,12,16,.55);border:1px solid rgba(159,179,186,.3);border-radius:10px;padding:.42rem .7rem;
+  backdrop-filter:blur(10px);text-shadow:0 1px 3px rgba(4,9,12,.85);color:var(--text-secondary)}
+.chip b{color:var(--accent);font-weight:700}
+@media(max-height:560px){.hud{display:none}}
+
+/* progress rail */
+.rail{position:absolute;right:2.2vw;top:50%;transform:translateY(-50%);z-index:6;width:2px;height:26vh;background:var(--line);border-radius:2px}
+.rail i{position:absolute;left:0;top:0;width:100%;height:calc(var(--p,0)*100%);background:var(--accent);border-radius:2px;display:block}
+@media(max-width:860px){.rail{display:none}}
+
+/* static hero */
+.statichero{display:none}
+.hero.static-mode .statichero{display:block}
+.hero.static-mode .rig,.hero.static-mode .band,.hero.static-mode .hud,.hero.static-mode .rail{display:none}
+.statichero .inner{position:relative;z-index:4;text-align:center}
+.statichero img{margin:1.6rem auto 0;filter:drop-shadow(0 30px 50px rgba(0,0,0,.6))}
+.statichero h1{font-size:clamp(2.6rem,12vw,4.6rem)}
+.statichero .lede{color:var(--text-secondary);max-width:46ch;margin:1rem auto 0}
+
+/* ---------- sections ---------- */
+main{position:relative;z-index:1}
+section{padding:clamp(4.5rem,10vw,8rem) 0;position:relative}
+.shead{max-width:62ch}
+.shead h2{font-size:clamp(2rem,5.2vw,3.6rem);margin:.6rem 0 0}
+.shead p{color:var(--text-secondary);margin-top:1rem}
+
+/* spec section: asymmetric split, not a card grid */
+.spec{background:linear-gradient(180deg,transparent,rgba(20,36,44,.6) 22%,rgba(20,36,44,.6) 78%,transparent)}
+.spec .grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(2rem,5vw,4.5rem);align-items:center;margin-top:3rem}
+@media(max-width:900px){.spec .grid{grid-template-columns:1fr}}
+.specimg{position:relative;display:grid;place-items:center}
+.specimg img{width:auto;max-width:100%;max-height:min(64vh,560px)}
+.specimg::after{content:"";position:absolute;left:6%;right:6%;bottom:4%;height:60px;
+  background:radial-gradient(ellipse 50% 50% at 50% 50%, rgba(122,211,232,.3), transparent 70%);filter:blur(8px);z-index:-1}
+.speclist{display:grid;grid-template-columns:1fr 1fr;gap:0}
+@media(max-width:520px){.speclist{grid-template-columns:1fr}}
+.speclist div{padding:1.1rem .2rem;border-top:1px solid var(--line)}
+.speclist dt{font-family:var(--mono);font-size:.63rem;letter-spacing:.2em;text-transform:uppercase;color:var(--text-secondary)}
+.speclist dd{margin:.35rem 0 0;font-family:var(--display);font-size:1.5rem;font-weight:700;letter-spacing:.01em}
+.speclist dd small{font-family:var(--body);font-size:.8rem;font-weight:500;color:var(--text-secondary);letter-spacing:0;text-transform:none}
+
+/* feature strip: baseline aligned rows, different skeleton from neighbours */
+.feats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border-block:1px solid var(--line);margin-top:3.5rem}
+@media(max-width:880px){.feats{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:460px){.feats{grid-template-columns:1fr}}
+.feat{background:var(--canvas);padding:1.8rem 1.4rem;transition:background .45s var(--e1)}
+.feat:hover{background:var(--panel)}
+.feat .n{font-family:var(--mono);font-size:.62rem;color:var(--accent);letter-spacing:.2em}
+.feat h3{font-size:1.16rem;margin:.7rem 0 .45rem}
+.feat p{font-size:.87rem;color:var(--text-secondary)}
+
+/* models */
+.models{background:linear-gradient(180deg,transparent,rgba(16,29,35,.72) 12%,rgba(16,29,35,.72) 88%,transparent)}
+.mgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;margin-top:3.2rem}
+@media(max-width:980px){.mgrid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.mgrid{grid-template-columns:1fr}}
+.card{position:relative;border:1px solid var(--line);border-radius:16px;padding:1.5rem 1.4rem 1.6rem;overflow:hidden;
+  background:linear-gradient(160deg,rgba(26,47,56,.5),rgba(20,36,44,.24));
+  transition:border-color .45s var(--e1),transform .45s var(--e1),background .45s var(--e1)}
+.card:hover{border-color:var(--line-strong);transform:translateY(-6px);background:linear-gradient(160deg,rgba(26,47,56,.78),rgba(20,36,44,.4))}
+.card{display:flex;flex-direction:column}
+.card .ph{position:relative;flex:none;height:240px;margin-bottom:1.1rem;overflow:hidden}
+.card .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center;transition:transform .6s var(--e1)}
+.card ul{margin-top:auto}
+.card:hover .ph img{transform:scale(1.05)}
+.card h3{font-size:1.35rem}
+.card .sub{font-family:var(--mono);font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:.5rem}
+.card ul{list-style:none;padding:0;margin:.9rem 0 0;display:flex;flex-wrap:wrap;gap:.4rem}
+.card li{font-family:var(--mono);font-size:.63rem;letter-spacing:.08em;color:var(--text-secondary);
+  border:1px solid var(--line);border-radius:999px;padding:.26rem .6rem}
+.card .swatch{position:absolute;top:1.2rem;right:1.2rem;width:16px;height:16px;border-radius:50%;border:2px solid rgba(255,255,255,.22)}
+
+/* battery */
+.batt{position:relative}
+.batt .top{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(2rem,5vw,4rem);align-items:center}
+@media(max-width:900px){.batt .top{grid-template-columns:1fr}}
+.lp{display:flex;align-items:center;gap:.9rem;margin-bottom:1.2rem}
+.lp img{width:64px}
+.lp span{font-family:var(--mono);font-size:.64rem;letter-spacing:.18em;text-transform:uppercase;color:var(--text-secondary)}
+.battimg{position:relative}
+.battimg::after{content:"";position:absolute;inset:12% 8% 6%;
+  background:radial-gradient(ellipse 50% 50% at 50% 60%, rgba(182,224,67,.26), transparent 70%);filter:blur(14px);z-index:-1}
+
+/* the interactive moment: hold to charge */
+.charge{margin-top:3.6rem;border:1px solid var(--line);border-radius:18px;padding:clamp(1.6rem,4vw,2.6rem);
+  background:linear-gradient(160deg,rgba(26,47,56,.55),rgba(20,36,44,.2))}
+.charge .lead{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;flex-wrap:wrap}
+.charge h3{font-size:clamp(1.4rem,3vw,2rem)}
+.cellrow{display:flex;gap:6px;margin:1.5rem 0 1.1rem;height:54px}
+.cell{flex:1;border-radius:6px;background:var(--panel);position:relative;overflow:hidden;border:1px solid var(--line)}
+.cell::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,var(--accent),#8fc22c);
+  transform:scaleY(var(--f,0));transform-origin:bottom;transition:transform .18s linear}
+.holdbtn{position:relative;overflow:hidden;touch-action:none;user-select:none;-webkit-user-select:none}
+.holdbtn::after{content:"";position:absolute;inset:0;background:rgba(11,20,24,.16);transform:scaleX(var(--hp,0));transform-origin:left;pointer-events:none}
+.chargestat{font-family:var(--mono);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--text-secondary)}
+.chargestat b{color:var(--accent)}
+.variants{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:2rem}
+@media(max-width:760px){.variants{grid-template-columns:1fr}}
+.variant{border:1px solid var(--line);border-radius:14px;padding:1.3rem;opacity:.3;transform:translateY(12px);
+  transition:opacity .6s var(--e1),transform .6s var(--e1),border-color .45s var(--e1)}
+.charge.done .variant{opacity:1;transform:none}
+.charge.done .variant:nth-child(2){transition-delay:.12s}
+.charge.done .variant:nth-child(3){transition-delay:.24s}
+.variant.lead-pack{border-color:var(--accent-muted);background:linear-gradient(160deg,rgba(182,224,67,.09),transparent)}
+.variant .tag{font-family:var(--mono);font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:var(--accent)}
+.variant h4{font-family:var(--display);font-size:1.5rem;font-weight:800;margin:.5rem 0 .1rem;text-transform:uppercase}
+.variant p{font-size:.86rem;color:var(--text-secondary);margin-top:.55rem}
+.variant .figs{display:flex;gap:1.2rem;margin-top:.9rem;flex-wrap:wrap}
+.variant .figs div{border-top:1px solid var(--line);padding-top:.5rem;flex:1;min-width:78px}
+.variant .figs dt{font-family:var(--mono);font-size:.55rem;letter-spacing:.16em;text-transform:uppercase;color:var(--text-secondary)}
+.variant .figs dd{margin:.2rem 0 0;font-family:var(--display);font-size:1.15rem;font-weight:700}
+
+/* faq */
+.faq details{border-top:1px solid var(--line)}
+.faq details:last-of-type{border-bottom:1px solid var(--line)}
+.faq summary{cursor:pointer;list-style:none;padding:1.35rem 2.5rem 1.35rem 0;position:relative;
+  font-family:var(--display);font-size:1.2rem;font-weight:700;text-transform:uppercase;letter-spacing:.01em}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"";position:absolute;right:.4rem;top:50%;width:11px;height:11px;
+  border-right:2px solid var(--accent);border-bottom:2px solid var(--accent);
+  transform:translateY(-70%) rotate(45deg);transition:transform .4s var(--e1)}
+.faq details[open] summary::after{transform:translateY(-30%) rotate(225deg)}
+.faq .ans{padding:0 0 1.4rem;color:var(--text-secondary);max-width:70ch}
+
+/* cta + form */
+.cta{background:linear-gradient(180deg,transparent,rgba(20,36,44,.8))}
+.form{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:2.2rem;max-width:640px}
+@media(max-width:600px){.form{grid-template-columns:1fr}}
+.form .full{grid-column:1/-1}
+label{display:block;font-family:var(--mono);font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--text-secondary);margin-bottom:.4rem}
+input,select,textarea{width:100%;background:var(--panel);border:1px solid var(--line-strong);color:var(--text-primary);
+  border-radius:10px;padding:.8rem .9rem;font-family:var(--body);font-size:.95rem;transition:border-color .3s var(--e1)}
+input:focus,select:focus,textarea:focus{border-color:var(--accent);outline:none}
+textarea{resize:vertical;min-height:96px}
+.formnote{font-size:.78rem;color:var(--text-secondary);margin-top:.9rem}
+.success{display:none;border:1px solid var(--accent-muted);background:rgba(182,224,67,.07);border-radius:12px;padding:1.2rem;margin-top:1.4rem}
+.success.on{display:block}
+
+footer{border-top:1px solid var(--line);padding:3.5rem 0 2.5rem;position:relative;z-index:1}
+.fgrid{display:flex;justify-content:space-between;gap:2rem;flex-wrap:wrap;align-items:flex-start}
+footer a{color:var(--text-secondary);text-decoration:none;font-size:.87rem;display:block;padding:.2rem 0}
+footer a:hover{color:var(--accent)}
+.legal{margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid var(--line);font-size:.76rem;color:var(--text-secondary);display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+
+/* scroll entrances */
+.rv{opacity:0;transform:translateY(26px);transition:opacity .8s var(--e1),transform .8s var(--e1)}
+.rv.in{opacity:1;transform:none}
+.stg > *{opacity:0;transform:translateY(20px);transition:opacity .7s var(--e1),transform .7s var(--e1)}
+.stg.in > *{opacity:1;transform:none}
+.stg.in > *:nth-child(1){transition-delay:.05s}
+.stg.in > *:nth-child(2){transition-delay:.14s}
+.stg.in > *:nth-child(3){transition-delay:.23s}
+.stg.in > *:nth-child(4){transition-delay:.32s}
+.stg.in > *:nth-child(5){transition-delay:.41s}
+.stg.in > *:nth-child(6){transition-delay:.5s}
+.stg.done > *,.stg.done > *:nth-child(1),.stg.done > *:nth-child(2),.stg.done > *:nth-child(3),
+.stg.done > *:nth-child(4),.stg.done > *:nth-child(5),.stg.done > *:nth-child(6){transition-delay:0s!important}
+
+/* self-drawing antler rule */
+.rule{width:100%;height:52px;overflow:visible;margin-bottom:.4rem}
+.rule path{stroke:var(--accent);stroke-width:1.5;fill:none;stroke-linecap:round;
+  stroke-dasharray:var(--len,600);stroke-dashoffset:calc(var(--len,600) * (1 - var(--d,0)))}
+
+body.paused *,body.paused *::before,body.paused *::after{animation-play-state:paused!important}
+
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important;transition-delay:0s!important}
+  .rv,.stg > *{opacity:1!important;transform:none!important}
+  .band{opacity:1!important}
+  .band .w,.band .c,.band .inner,.band .lede,.band .row{opacity:1!important;transform:none!important}
+  .band{position:relative;left:auto;transform:none;width:auto}
+  .variant{opacity:1!important;transform:none!important}
+  .rule path{stroke-dashoffset:0!important}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="env" aria-hidden="true"></div>
+
+<nav class="nav" id="nav">
+  <div class="wrap bar">
+    <a class="brand" href="#top" aria-label="Illicium Motors home">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 27V16M16 16l-5.4-4.4L9.3 6M16 16l5.4-4.4L22.7 6M10.6 11.6 6 12.9M21.4 11.6 26 12.9M12.4 8.4 9 8M19.6 8.4 23 8" stroke="#b6e043" stroke-width="1.7" stroke-linecap="round" fill="none"/></svg>
+      <span style="display:block"><b>ILLICIUM</b><span>MOTORS</span></span>
+    </a>
+    <div class="navlinks">
+      <a href="#flagship">Flagship</a>
+      <a href="#models">Models</a>
+      <a href="#battery">Batteries</a>
+      <a href="#faq">FAQ</a>
+    </div>
+    <a class="btn" href="#enquire">Book a test ride</a>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="stage" id="stage">
+    <div class="glowfloor" aria-hidden="true"></div>
+
+    <div class="rig" id="rig" aria-hidden="true">
+      <img src="assets/hero-tranz.webp" alt="" id="heroimg" width="1600" height="1067">
+    </div>
+
+    <div class="scrimbase" aria-hidden="true"></div>
+
+    <div class="band top b-drift" data-a="0" data-b="0.20" data-ramp="0.05">
+      <p class="kicker">Illicium Motors</p>
+      <h1 data-split="word"><span class="sr">Built to lead</span></h1>
+      <p class="lede">Not to follow. The flagship that carries rugged engineering and premium electric performance in one machine.</p>
+    </div>
+
+    <div class="band bottom b-scatter" data-a="0.22" data-b="0.44" data-spread="0.5">
+      <p class="kicker">Range</p>
+      <h2 data-split="char"><span class="sr">90 km on one charge</span></h2>
+      <p class="lede">Ride the week, not the anxiety. A full charge takes four and a half hours from a normal wall socket.</p>
+    </div>
+
+    <div class="band bottom b-depth" data-a="0.46" data-b="0.68">
+      <div class="inner">
+        <p class="kicker">Load</p>
+        <h2>Carries 150 kg</h2>
+        <p class="lede">Two adults and the shopping. A 1500W hub motor and a frame that does not flinch at a loaded rear rack.</p>
+      </div>
+    </div>
+
+    <div class="band bottom b-settle" data-a="0.70" data-b="1" data-ramp="0.05">
+      <p class="kicker">Certified to stand out</p>
+      <h2 data-split="word"><span class="sr">Your next ride is here</span></h2>
+      <p class="lede">Ten finishes. One lithium platform. Book a test ride and feel it before you decide.</p>
+      <div class="row">
+        <a class="btn" href="#enquire">Book a test ride</a>
+        <a class="btn ghost" href="#models">See all models</a>
+      </div>
+    </div>
+
+    <div class="hud" aria-hidden="true">
+      <span class="chip">Top speed <b>25 km/h</b></span>
+      <span class="chip">Battery <b>60V 32Ah</b></span>
+      <span class="chip">Charge <b>4.5 h</b></span>
+      <span class="chip">Motor <b>1500W</b></span>
+    </div>
+
+    <div class="rail" aria-hidden="true"><i id="railfill"></i></div>
+
+    <div class="statichero">
+      <div class="wrap inner">
+        <p class="kicker">Illicium Motors</p>
+        <h1>Built to lead</h1>
+        <p class="lede">The flagship that carries rugged engineering and premium electric performance in one machine. 90 km of range, 150 kg of load, a 60V lithium pack.</p>
+        <div class="row">
+          <a class="btn" href="#enquire">Book a test ride</a>
+          <a class="btn ghost" href="#models">See all models</a>
+        </div>
+        <img src="assets/hero-tranz.webp" alt="The Illicium Motors flagship electric scooter in arctic blue, seen from the side" width="1600" height="1067">
+      </div>
+    </div>
+  </div>
+</header>
+
+<main id="main" tabindex="-1">
+
+  <section class="spec" id="flagship">
+    <div class="wrap">
+      <div class="shead rv">
+        <svg class="rule" viewBox="0 0 600 52" aria-hidden="true" preserveAspectRatio="none"><path d="M0 40h230l24-26 22 26h50l22-26 24 26h228"/></svg>
+        <p class="kicker">The flagship</p>
+        <h2>Every number on this machine is a decision</h2>
+        <p>Every curve, every component and every ride reflects strength, precision and reliability. Here is what that means once you stop reading and start riding.</p>
+      </div>
+
+      <div class="grid">
+        <div class="specimg rv">
+          <img src="assets/rider.webp" alt="A rider seated on the Illicium Motors flagship electric scooter" width="900" height="1348" loading="lazy">
+        </div>
+        <dl class="speclist stg">
+          <div><dt>Max speed</dt><dd>25 km/h</dd></div>
+          <div><dt>Range</dt><dd>90 km <small>per charge</small></dd></div>
+          <div><dt>Motor power</dt><dd>1500W <small>hub motor</small></dd></div>
+          <div><dt>Battery</dt><dd>60V 32Ah <small>lithium</small></dd></div>
+          <div><dt>Charging time</dt><dd>4.5 hours</dd></div>
+          <div><dt>Load capacity</dt><dd>150 kg</dd></div>
+          <div><dt>Kerb weight</dt><dd>85 kg</dd></div>
+          <div><dt>Brakes</dt><dd>Disc <small>front, drum rear</small></dd></div>
+        </dl>
+      </div>
+
+      <div class="feats stg">
+        <div class="feat">
+          <p class="n">01</p>
+          <h3>Signature LED headlight</h3>
+          <p>Bright visibility with a distinctive style that reads as Illicium from fifty metres out.</p>
+        </div>
+        <div class="feat">
+          <p class="n">02</p>
+          <h3>Digital display</h3>
+          <p>All your ride information at a glance. Speed, charge and range without hunting for it.</p>
+        </div>
+        <div class="feat">
+          <p class="n">03</p>
+          <h3>Spacious storage</h3>
+          <p>Room for your helmet and the rest of it, under a seat designed for comfort every time.</p>
+        </div>
+        <div class="feat">
+          <p class="n">04</p>
+          <h3>Reverse and alarm</h3>
+          <p>Reverse mode for tight parking. Anti theft alarm for the peace of mind after you walk away.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="models" id="models">
+    <div class="wrap">
+      <div class="shead rv">
+        <p class="kicker">Available options</p>
+        <h2>Ten machines. One platform.</h2>
+        <p>Every model runs the same lithium platform and the same warranty. Pick the shape and the finish that fits how you actually ride.</p>
+      </div>
+
+      <div class="mgrid stg">
+        <article class="card">
+          <span class="swatch" style="background:#7ad3e8"></span>
+          <div class="ph"><img src="assets/tranz-front.webp" alt="Illicium flagship scooter, front three quarter view in arctic blue" loading="lazy"></div>
+          <p class="sub">Flagship</p>
+          <h3>Arctic Blue</h3>
+          <ul><li>Twin light</li><li>Windshield</li><li>150 kg load</li></ul>
+        </article>
+
+        <article class="card">
+          <span class="swatch" style="background:#8e1b22"></span>
+          <div class="ph"><img src="assets/model-classic.webp" alt="Illicium classic bodied electric scooter in deep red" loading="lazy"></div>
+          <p class="sub">Classic</p>
+          <h3>Crimson</h3>
+          <ul><li>Single light</li><li>Step through</li><li>City tuned</li></ul>
+        </article>
+
+        <article class="card">
+          <span class="swatch" style="background:#e8b7c6"></span>
+          <div class="ph"><img src="assets/model-lima.webp" alt="Illicium Lima electric scooter in blush pink and white" loading="lazy"></div>
+          <p class="sub">Classic</p>
+          <h3>Blush Lima</h3>
+          <ul><li>Single light</li><li>Backrest</li><li>Light steering</li></ul>
+        </article>
+
+        <article class="card">
+          <span class="swatch" style="background:#3b3f8f"></span>
+          <div class="ph"><img src="assets/model-sport-blue.webp" alt="Illicium sport electric scooter in indigo" loading="lazy"></div>
+          <p class="sub">Sport</p>
+          <h3>Indigo Sport</h3>
+          <ul><li>Twin light</li><li>Alloy wheels</li><li>Disc front</li></ul>
+        </article>
+
+        <article class="card">
+          <span class="swatch" style="background:#1c1c1e"></span>
+          <div class="ph"><img src="assets/model-black-red.webp" alt="Illicium sport electric scooter in black with red accents" loading="lazy"></div>
+          <p class="sub">Sport</p>
+          <h3>Carbon Red</h3>
+          <ul><li>Twin light</li><li>Low stance</li><li>Disc front</li></ul>
+        </article>
+
+        <article class="card">
+          <span class="swatch" style="background:#1f4fa8"></span>
+          <div class="ph"><img src="assets/model-blue.webp" alt="Illicium electric scooter in royal blue with graphics" loading="lazy"></div>
+          <p class="sub">Sport</p>
+          <h3>Royal Blue</h3>
+          <ul><li>Twin light</li><li>Graphics kit</li><li>Long seat</li></ul>
+        </article>
+
+        <article class="card">
+          <span class="swatch" style="background:#7fc241"></span>
+          <div class="ph"><img src="assets/model-green.webp" alt="Illicium electric scooter in lime green with windshield" loading="lazy"></div>
+          <p class="sub">Utility</p>
+          <h3>Lime Deck</h3>
+          <ul><li>Windshield</li><li>Flat floor</li><li>Cargo ready</li></ul>
+        </article>
+
+        <article class="card">
+          <span class="swatch" style="background:#e8e8ea"></span>
+          <div class="ph"><img src="assets/model-white.webp" alt="Illicium electric scooter in pearl white with maroon seat" loading="lazy"></div>
+          <p class="sub">Classic</p>
+          <h3>Pearl White</h3>
+          <ul><li>Single light</li><li>Maroon seat</li><li>City tuned</li></ul>
+        </article>
+
+        <article class="card">
+          <span class="swatch" style="background:#4a5240"></span>
+          <div class="ph"><img src="assets/model-camo.webp" alt="Illicium sport electric scooter in camouflage finish" loading="lazy"></div>
+          <p class="sub">Sport</p>
+          <h3>Camo Edition</h3>
+          <ul><li>Twin light</li><li>Wide tyres</li><li>Disc front</li></ul>
+        </article>
+
+        <article class="card">
+          <span class="swatch" style="background:#b0175a"></span>
+          <div class="ph"><img src="assets/model-magenta.webp" alt="Illicium electric scooter in magenta" loading="lazy"></div>
+          <p class="sub">Sport</p>
+          <h3>Magenta</h3>
+          <ul><li>Twin light</li><li>Alloy wheels</li><li>Long seat</li></ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="batt" id="battery">
+    <div class="wrap">
+      <div class="top">
+        <div class="rv">
+          <div class="lp">
+            <img src="assets/lithiumpills-logo.webp" alt="LithiumPills" width="64" height="64" loading="lazy">
+            <span>Powered by LithiumPills</span>
+          </div>
+          <p class="kicker">The pack</p>
+          <h2 style="font-size:clamp(2rem,5.2vw,3.6rem);margin:.6rem 0 0">The battery is the bike</h2>
+          <p style="color:var(--text-secondary);margin-top:1rem">Everything else on the machine is built around the pack. Ours are sealed lithium units from LithiumPills, with a battery management system watching every cell, and they lift out so you can charge indoors instead of hunting for a socket near the parking.</p>
+        </div>
+        <div class="battimg rv">
+          <img src="assets/batteries.webp" alt="Three LithiumPills lithium battery packs in different sizes" width="900" height="900" loading="lazy">
+        </div>
+      </div>
+
+      <div class="charge" id="charge">
+        <div class="lead">
+          <h3>Hold to charge the pack</h3>
+          <p class="chargestat" id="chargestat">Charge <b><span id="pct">0</span>%</b></p>
+        </div>
+        <div class="cellrow" id="cellrow" aria-hidden="true"></div>
+        <button class="btn holdbtn" id="holdbtn" type="button" aria-describedby="chargestat">Press and hold</button>
+        <p class="formnote" id="chargehint">Hold it down. Let go early and it eases back, same as the real thing.</p>
+
+        <div class="variants" id="variants">
+          <div class="variant lead-pack">
+            <p class="tag">Standard, fitted</p>
+            <h4>60V 32Ah</h4>
+            <p>The pack every model ships with. Lithium, sealed, removable, and the one every number on this site was measured against.</p>
+            <dl class="figs">
+              <div><dt>Range</dt><dd>90 km</dd></div>
+              <div><dt>Charge</dt><dd>4.5 h</dd></div>
+              <div><dt>Chemistry</dt><dd>Li-ion</dd></div>
+            </dl>
+          </div>
+          <div class="variant">
+            <p class="tag">Also available</p>
+            <h4>Compact</h4>
+            <p>The smaller format in the same housing family. Lighter to carry up the stairs, sized for short city runs and second riders.</p>
+            <dl class="figs">
+              <div><dt>Format</dt><dd>Compact</dd></div>
+              <div><dt>Fit</dt><dd>All models</dd></div>
+            </dl>
+          </div>
+          <div class="variant">
+            <p class="tag">Also available</p>
+            <h4>Extended</h4>
+            <p>The tall pack for riders who run all day. Same bay, same connector, more cells behind the same battery management system.</p>
+            <dl class="figs">
+              <div><dt>Format</dt><dd>Extended</dd></div>
+              <div><dt>Fit</dt><dd>All models</dd></div>
+            </dl>
+          </div>
+        </div>
+        <p class="formnote">Ask us for the exact voltage and capacity on the compact and extended packs. We quote them per model, because the bay and the controller decide what fits.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="faq" id="faq">
+    <div class="wrap">
+      <div class="shead rv">
+        <p class="kicker">Straight answers</p>
+        <h2>The things people ask before they buy</h2>
+      </div>
+      <div class="rv" style="margin-top:2.4rem">
+        <details><summary>Do I need a licence or registration?</summary>
+          <div class="ans"><p>Our 25 km/h models are built to sit in the low speed category, which in most states means no licence and no registration. Rules change by state, so we confirm your exact case in writing before you pay anything.</p></div></details>
+        <details><summary>Is 90 km real, or a lab number?</summary>
+          <div class="ans"><p>It is the rated figure for the 60V 32Ah pack. What you get depends on load, tyre pressure, terrain and how much stop and start you ride. A loaded rider on a hilly route should plan for less. Ask us and we will give you the honest number for your commute.</p></div></details>
+        <details><summary>What happens to the battery after a few years?</summary>
+          <div class="ans"><p>Lithium packs lose capacity gradually rather than failing overnight. The pack is removable and replaceable, so a tired battery is a part you swap, not a scooter you scrap.</p></div></details>
+        <details><summary>Can I charge it in my flat?</summary>
+          <div class="ans"><p>Yes. The pack lifts out and the charger runs off a normal wall socket. That is the whole reason it is removable.</p></div></details>
+        <details><summary>Where do I get it serviced?</summary>
+          <div class="ans"><p>Call us and we will point you at the nearest service partner. An electric scooter has far fewer wearing parts than a petrol one, so most visits are brakes, tyres and a battery health check.</p></div></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta" id="enquire">
+    <div class="wrap">
+      <div class="shead rv">
+        <p class="kicker">Book a test ride</p>
+        <h2>Ride one before you decide</h2>
+        <p>Tell us which model caught your eye and where you are. We will call you back and arrange a ride.</p>
+      </div>
+      <form class="form rv" id="form" novalidate>
+        <div><label for="fname">Your name</label><input id="fname" name="name" type="text" autocomplete="name" required></div>
+        <div><label for="fphone">Phone</label><input id="fphone" name="phone" type="tel" autocomplete="tel" required></div>
+        <div class="full"><label for="fmodel">Model you want to ride</label>
+          <select id="fmodel" name="model">
+            <option>Arctic Blue (flagship)</option>
+            <option>Crimson</option><option>Blush Lima</option><option>Indigo Sport</option>
+            <option>Carbon Red</option><option>Royal Blue</option><option>Lime Deck</option>
+            <option>Pearl White</option><option>Camo Edition</option><option>Magenta</option>
+            <option>Not sure yet</option>
+          </select></div>
+        <div class="full"><label for="fmsg">Anything else</label><textarea id="fmsg" name="message"></textarea></div>
+        <div class="full"><button class="btn" type="submit">Send enquiry</button>
+          <p class="formnote">This opens your email app with the message ready to send to Illicium Motors. Prefer to talk? Call <a href="tel:+919331027745" style="color:var(--accent)">93310 27745</a>.</p></div>
+      </form>
+      <div class="success" id="success" role="status">
+        <p><strong>Your email app should be open now.</strong> Send the message and we will call you back. If nothing opened, call us on 93310 27745 and we will book the ride over the phone.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fgrid">
+      <div style="max-width:34ch">
+        <a class="brand" href="#top" style="margin-bottom:.9rem">
+          <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 27V16M16 16l-5.4-4.4L9.3 6M16 16l5.4-4.4L22.7 6M10.6 11.6 6 12.9M21.4 11.6 26 12.9M12.4 8.4 9 8M19.6 8.4 23 8" stroke="#b6e043" stroke-width="1.7" stroke-linecap="round" fill="none"/></svg>
+          <span style="display:block"><b>ILLICIUM</b><span>MOTORS</span></span>
+        </a>
+        <p style="color:var(--text-secondary);font-size:.87rem">Electric scooters built to lead, not follow. Lithium packs by LithiumPills.</p>
+      </div>
+      <div>
+        <p class="kicker" style="margin-bottom:.7rem">Explore</p>
+        <a href="#flagship">Flagship</a><a href="#models">All models</a><a href="#battery">Batteries</a><a href="#faq">FAQ</a>
+      </div>
+      <div>
+        <p class="kicker" style="margin-bottom:.7rem">Talk to us</p>
+        <a href="tel:+919331027745">93310 27745</a>
+        <a href="https://www.illiciummotors.com">www.illiciummotors.com</a>
+        <a href="#enquire">Book a test ride</a>
+      </div>
+    </div>
+    <div class="legal">
+      <span>&copy; <span id="yr">2026</span> Illicium Motors. All rights reserved.</span>
+      <span>Range and speed figures are rated values and vary with load, terrain and riding style.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+'use strict';
+var $=function(s,r){return (r||document).querySelector(s)},
+    $$=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
+
+document.getElementById('yr').textContent=new Date().getFullYear();
+
+/* ---------- seeded rng so "random" offsets are identical every load ---------- */
+function rng(seed){var s=seed>>>0;return function(){s=(s*1664525+1013904223)>>>0;return s/4294967296}}
+
+/* ---------- split headlines into word / char spans ---------- */
+var rand=rng(20260904);
+$$('[data-split]').forEach(function(el){
+  var sr=el.querySelector('.sr'); if(!sr) return;
+  var text=sr.textContent, mode=el.getAttribute('data-split');
+  var band=el.closest('.band');
+  var spread=parseFloat(band&&band.getAttribute('data-spread'))||0.5;
+  var vis=document.createElement('span');
+  vis.setAttribute('aria-hidden','true');
+  var words=text.split(' '), ci=0, total=text.replace(/ /g,'').length;
+  words.forEach(function(w,wi){
+    var ws=document.createElement('span'); ws.className='w';
+    if(mode==='word'){ ws.style.setProperty('--th',(wi/Math.max(1,words.length)*0.5).toFixed(3)); ws.textContent=w; }
+    else{
+      for(var i=0;i<w.length;i++){
+        var cs=document.createElement('span'); cs.className='c'; cs.textContent=w[i];
+        cs.style.setProperty('--th',(ci/Math.max(1,total)*spread+rand()*0.06).toFixed(3));
+        cs.style.setProperty('--jx',((rand()*2-1)*34).toFixed(1)+'px');
+        cs.style.setProperty('--jy',((rand()*2-1)*30).toFixed(1)+'px');
+        cs.style.setProperty('--jr',((rand()*2-1)*14).toFixed(1)+'deg');
+        ws.appendChild(cs); ci++;
+      }
+    }
+    vis.appendChild(ws);
+    if(wi<words.length-1) vis.appendChild(document.createTextNode(' '));
+  });
+  el.appendChild(vis);
+});
+
+/* ---------- hero drive ---------- */
+var hero=$('#top'), stage=$('#stage'), rig=$('#rig'), railfill=$('#railfill');
+var bands=$$('.band').map(function(el){
+  return {el:el,a:parseFloat(el.getAttribute('data-a')),b:parseFloat(el.getAttribute('data-b')),
+          ramp:parseFloat(el.getAttribute('data-ramp'))||0,op:-1,k:-1};
+});
+var target=0,shown=0,rafId=null,lastTick=0,onScreen=true,scrubOn=false,loadK=0,loadStart=0;
+
+function clamp(v,lo,hi){return Math.min(hi,Math.max(lo,v))}
+function smoothstep(p,e0,e1){var t=clamp((p-e0)/(e1-e0),0,1);return t*t*(3-2*t)}
+function heroProgress(){
+  var r=hero.getBoundingClientRect(), span=hero.offsetHeight-window.innerHeight;
+  if(span<=0) return 0;
+  return clamp(-r.top/span,0,1);
+}
+function paint(p){
+  /* the machine sits low under the headline, then rises and pushes forward
+     so the lower half clears for the bands that follow */
+  var sc=1+p*0.13, ty=(7-24*p);
+  rig.style.transform='translate3d(0,'+ty.toFixed(2)+'vh,0) scale('+sc.toFixed(4)+')';
+  if(railfill) railfill.style.setProperty('--p',p.toFixed(4));
+
+  for(var i=0;i<bands.length;i++){
+    var B=bands[i], a=B.a, b=B.b;
+    var f=Math.min(0.02,(b-a)/3);
+    var o=(i===0?1:smoothstep(p,a,a+f))*(i===bands.length-1?1:(1-smoothstep(p,b-f,b)));
+    if(i===0) o=1-smoothstep(p,b-f,b);
+    if(i===bands.length-1) o=smoothstep(p,a,a+f);
+    var ramp=B.ramp||Math.min(0.025,(b-a)*0.35);
+    var k=clamp((p-a)/ramp,0,1);
+    if(i===0) k=Math.max(k,loadK);
+    if(Math.abs(o-B.op)>0.004){ B.el.style.opacity=o.toFixed(3); B.op=o; }
+    if(Math.abs(k-B.k)>0.008){ B.el.style.setProperty('--k',k.toFixed(3)); B.k=k; }
+  }
+}
+function tick(now){
+  var dt=Math.min(100,now-(lastTick||now)); lastTick=now;
+  var kk=0.16;
+  shown+=(target-shown)*(1-Math.pow(1-kk,dt/16.667));
+  var loading=loadK<1;
+  if(loading){ loadK=clamp((now-loadStart)/900,0,1); }
+  if(Math.abs(target-shown)<0.0005 && !loading){ shown=target; rafId=null; lastTick=0; paint(shown); return; }
+  rafId=requestAnimationFrame(tick);
+  paint(shown);
+}
+function kick(){ if(rafId===null && onScreen && scrubOn){ lastTick=0; rafId=requestAnimationFrame(tick); } }
+function onScroll(){ target=heroProgress(); kick(); }
+
+if('IntersectionObserver' in window){
+  new IntersectionObserver(function(es){
+    onScreen=es[0].isIntersecting;
+    if(onScreen) kick();
+    else if(rafId!==null){ cancelAnimationFrame(rafId); rafId=null; }
+  },{rootMargin:'10px'}).observe(hero);
+}
+
+/* ---------- the five static-hero gates, live in CSS and JS ---------- */
+var GATES=[
+  '(max-width: 720px)',
+  '(orientation: portrait) and (max-width: 1024px)',
+  '(orientation: portrait) and (pointer: coarse)',
+  '(orientation: landscape) and (pointer: coarse) and (max-height: 560px)',
+  '(prefers-reduced-motion: reduce)'
+];
+var MQLS=GATES.map(function(q){return matchMedia(q)});
+function enableScrub(){
+  if(scrubOn) return; scrubOn=true;
+  hero.classList.remove('static-mode');
+  loadStart=performance.now(); loadK=0;
+  bands.forEach(function(B){B.op=-1;B.k=-1});
+  window.addEventListener('scroll',onScroll,{passive:true});
+  target=heroProgress(); shown=target; kick(); onScroll();
+}
+function disableScrub(){
+  if(!scrubOn){ hero.classList.add('static-mode'); return; }
+  scrubOn=false;
+  window.removeEventListener('scroll',onScroll);
+  if(rafId!==null){ cancelAnimationFrame(rafId); rafId=null; }
+  hero.classList.add('static-mode');
+}
+function applyHeroMode(){
+  if(MQLS.some(function(m){return m.matches})) disableScrub(); else enableScrub();
+}
+MQLS.forEach(function(m){ m.addEventListener('change',applyHeroMode) });
+applyHeroMode();
+
+/* ---------- nav solidity ---------- */
+var nav=$('#nav');
+function navState(){ nav.classList.toggle('solid',window.scrollY>40) }
+window.addEventListener('scroll',navState,{passive:true}); navState();
+
+/* ---------- scroll entrances ---------- */
+var revealed=[];
+if('IntersectionObserver' in window){
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if(!e.isIntersecting) return;
+      e.target.classList.add('in');
+      io.unobserve(e.target);
+      if(e.target.classList.contains('stg')){
+        setTimeout(function(){ e.target.classList.add('done') },1100);
+      }
+    });
+  },{threshold:0.14,rootMargin:'0px 0px -8% 0px'});
+  $$('.rv,.stg').forEach(function(el){ io.observe(el); revealed.push(el) });
+} else {
+  $$('.rv,.stg').forEach(function(el){ el.classList.add('in','done') });
+}
+
+/* ---------- self-drawing rule ---------- */
+var rules=$$('.rule path');
+rules.forEach(function(p){ try{ p.style.setProperty('--len',Math.ceil(p.getTotalLength())) }catch(e){} });
+function drawRules(){
+  rules.forEach(function(p){
+    var r=p.getBoundingClientRect();
+    var d=clamp(1-(r.top-window.innerHeight*0.25)/(window.innerHeight*0.5),0,1);
+    p.style.setProperty('--d',d.toFixed(3));
+  });
+}
+window.addEventListener('scroll',drawRules,{passive:true}); drawRules();
+
+/* ---------- the interactive moment: hold to charge ---------- */
+var CELLS=14, cellrow=$('#cellrow'), cells=[];
+for(var i=0;i<CELLS;i++){ var d=document.createElement('span'); d.className='cell'; cellrow.appendChild(d); cells.push(d); }
+var holdBtn=$('#holdbtn'), chargeBox=$('#charge'), pctEl=$('#pct'), hint=$('#chargehint');
+var chg=0, holding=false, chRaf=null, lastCh=0, lastPct=-1, chargeDone=false;
+
+function paintCharge(){
+  for(var i=0;i<CELLS;i++){
+    var f=clamp(chg*CELLS-i,0,1);
+    cells[i].style.setProperty('--f',f.toFixed(3));
+  }
+  holdBtn.style.setProperty('--hp',chg.toFixed(3));
+  var p=Math.round(chg*100);
+  if(p!==lastPct){ pctEl.textContent=p; lastPct=p; }
+}
+function chTick(now){
+  var dt=Math.min(80,now-(lastCh||now)); lastCh=now;
+  chg=clamp(chg+(holding?dt/1500:-dt/2600),0,1);
+  paintCharge();
+  if(chg>=1 && !chargeDone){
+    chargeDone=true; chargeBox.classList.add('done');
+    holdBtn.textContent='Charged'; hint.textContent='Full. Three pack formats fit this bay.';
+  }
+  if((holding && chg<1)||(!holding && chg>0)){ chRaf=requestAnimationFrame(chTick) }
+  else { chRaf=null; lastCh=0 }
+}
+function startHold(e){ if(chargeDone) return; if(e&&e.cancelable) e.preventDefault(); holding=true; if(chRaf===null){lastCh=0;chRaf=requestAnimationFrame(chTick)} }
+function endHold(){ holding=false; if(chRaf===null&&chg>0){lastCh=0;chRaf=requestAnimationFrame(chTick)} }
+['mousedown','touchstart','pointerdown'].forEach(function(t){ holdBtn.addEventListener(t,startHold,{passive:false}) });
+['mouseup','mouseleave','touchend','touchcancel','pointerup','pointercancel'].forEach(function(t){ holdBtn.addEventListener(t,endHold) });
+holdBtn.addEventListener('keydown',function(e){ if(e.key===' '||e.key==='Enter'){ e.preventDefault(); startHold() } });
+holdBtn.addEventListener('keyup',function(e){ if(e.key===' '||e.key==='Enter'){ endHold() } });
+function completeCharge(){ chg=1; chargeDone=true; paintCharge(); chargeBox.classList.add('done'); holdBtn.textContent='Charged'; }
+
+/* ---------- reduced motion, honoured live in both directions ---------- */
+var rm=matchMedia('(prefers-reduced-motion: reduce)');
+function pinToFinalStates(){
+  revealed.forEach(function(el){ el.classList.add('in','done') });
+  rules.forEach(function(p){ p.style.setProperty('--d',1) });
+  completeCharge();
+  window.removeEventListener('scroll',drawRules);
+  if(rafId!==null){ cancelAnimationFrame(rafId); rafId=null; }
+}
+function unpin(){
+  window.addEventListener('scroll',drawRules,{passive:true}); drawRules();
+}
+rm.addEventListener('change',function(e){
+  if(e.matches) pinToFinalStates();
+  else { unpin(); applyHeroMode(); }
+});
+if(rm.matches) pinToFinalStates();
+
+/* ---------- pause every animation on a hidden tab ---------- */
+document.addEventListener('visibilitychange',function(){
+  document.body.classList.toggle('paused',document.hidden);
+});
+
+/* ---------- form: opens the visitor's mail app, addressed to the business ---------- */
+$('#form').addEventListener('submit',function(e){
+  e.preventDefault();
+  var f=e.target;
+  if(!f.name.value.trim()||!f.phone.value.trim()){
+    (!f.name.value.trim()?f.name:f.phone).focus(); return;
+  }
+  var body='Name: '+f.name.value+'\nPhone: '+f.phone.value+'\nModel: '+f.model.value+'\n\n'+f.message.value;
+  var href='mailto:info@illiciummotors.com?subject='+encodeURIComponent('Test ride request: '+f.model.value)+'&body='+encodeURIComponent(body);
+  $('#success').classList.add('on');
+  window.location.href=href;
+});
+})();
+</script>
+</body>
+</html>
